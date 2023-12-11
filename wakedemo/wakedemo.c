@@ -50,7 +50,7 @@ switch_interrupt_handler()
 // axis zero for col, axis 1 for row
 
 short drawPos[2] = {1,10}, controlPos[2] = {2, 10};
-short colVelocity = 1, colLimits[2] = {1, screenWidth/2};
+short colVelocity = 2, colLimits[2] = {1, screenWidth2};
 
 void
 draw_ball(int col, int row, unsigned short color)

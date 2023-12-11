@@ -103,7 +103,6 @@ void main()
   
   enableWDTInterrupts();      /**< enable periodic interrupt */
   or_sr(0x8);	              /**< GIE (enable interrupts) */
-  
   clearScreen(BG_COLOR);
   while (1) {			/* forever */
     if (redrawScreen) {
@@ -148,16 +147,37 @@ update_shape()
   if (pos != last_position)    /* erase if position changed */
     switch (currentShape) {
       case 0:
-        fillRectangle(col-5, row-5, 10, 40, BG_COLOR); 
+        fillRectangle(col-5, row-5, 10, 30, BG_COLOR); 
         fillRectangle(col+5, row-5, 10, 10, BG_COLOR);
         break;
+      case 2:
+        fillRectangle(col-5, row, 10, 20, BG_COLOR);
+        fillRectangle(col+5, row-10, 10, 20, BG_COLOR);
     }
 
   /* draw new shape */
   col = positions[pos].col;
   row = positions[pos].row;
-  fillRectangle(col-5, row-5, 10, 30, sqColors[color]); /* draw new shape */
-  fillRectangle(col+5, row-5, 10, 10, sqColors[color]);
+    switch (currentShape) {
+      case 0:
+        fillRectangle(col-5, row-5, 10, 30, sqColors[color]); 
+        fillRectangle(col+5, row-5, 10, 10, sqColors[color]);
+        break;
+      case 1:
+        fillRectangle(col-5, row-5, 10, 30, sqColors[color]); 
+        fillRectangle(col+5, row-5, 10, 10, sqColors[color]);
+        break;
+      case 2:
+        fillRectangle(col-5, row, 10, 20, sqColors[color]);
+        fillRectangle(col+5, row-10, 10, 20,  sqColors[color]);
+        break;
+      case 3:
+        fillRectangle(col-5, row, 10, 20, sqColors[color]);
+        fillRectangle(col+5, row-10, 10, 20,  sqColors[color]);
+        break;
+    }
+//  fillRectangle(col-5, row-5, 10, 30, sqColors[color]); /* draw new shape */
+//  fillRectangle(col+5, row-5, 10, 10, sqColors[color]);
   /* remember color & pos for next redraw */
   last_position = pos;
   last_color = color;
